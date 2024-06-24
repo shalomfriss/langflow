@@ -193,7 +193,7 @@ class SecretStrInput(BaseInputMixin, DatabaseLoadMixin):
     field_type: Optional[SerializableFieldTypes] = FieldTypes.PASSWORD
     password: CoalesceBool = Field(default=True)
     input_types: list[str] = []
-    load_from_db: CoalesceBool = True
+    load_from_db: CoalesceBool = False
 
 
 class IntInput(BaseInputMixin, ListableInputMixin, RangeMixin, MetadataTraceMixin):

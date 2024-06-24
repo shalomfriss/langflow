@@ -55,7 +55,6 @@ class OpenAIModelComponent(LCModelComponent):
             display_name="OpenAI API Key",
             info="The OpenAI API Key to use for the OpenAI model.",
             advanced=False,
-            value="OPENAI_API_KEY",
         ),
         FloatInput(name="temperature", display_name="Temperature", value=0.1),
         BoolInput(name="stream", display_name="Stream", info=STREAM_INFO_TEXT, advanced=True),

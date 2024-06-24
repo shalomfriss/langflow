@@ -20,7 +20,6 @@ class CohereComponent(LCModelComponent):
             display_name="Cohere API Key",
             info="The Cohere API Key to use for the Cohere model.",
             advanced=False,
-            value="COHERE_API_KEY",
         ),
         FloatInput(name="temperature", display_name="Temperature", value=0.75),
         MessageInput(name="input_value", display_name="Input"),

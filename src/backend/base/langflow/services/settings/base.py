@@ -12,9 +12,8 @@ from pydantic import field_validator
 from pydantic.fields import FieldInfo
 from pydantic_settings import BaseSettings, EnvSettingsSource, PydanticBaseSettingsSource, SettingsConfigDict
 
-from langflow.services.settings.constants import VARIABLES_TO_GET_FROM_ENVIRONMENT
+from langflow.services.settings.constants import VARIABLES_TO_GET_FROM_ENVIRONMENT, VariableDict
 
-# BASE_COMPONENTS_PATH = str(Path(__file__).parent / "components")
 BASE_COMPONENTS_PATH = str(Path(__file__).parent.parent.parent / "components")
 
 
@@ -117,7 +116,7 @@ class Settings(BaseSettings):
 
     store_environment_variables: bool = True
     """Whether to store environment variables as Global Variables in the database."""
-    variables_to_get_from_environment: list[str] = VARIABLES_TO_GET_FROM_ENVIRONMENT
+    variables_to_get_from_environment: list[VariableDict] = VARIABLES_TO_GET_FROM_ENVIRONMENT
     """List of environment variables to get from the environment and store in the database."""
     worker_timeout: int = 300
     """Timeout for the API calls in seconds."""

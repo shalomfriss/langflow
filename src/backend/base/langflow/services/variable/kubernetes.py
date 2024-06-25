@@ -25,7 +25,8 @@ class KubernetesSecretService(VariableService, Service):
         logger.info(f"{should_or_should_not} store environment variables in the kubernetes.")
         if self.settings_service.settings.store_environment_variables:
             variables = {}
-            for var in self.settings_service.settings.variables_to_get_from_environment:
+            for var_dict in self.settings_service.settings.variables_to_get_from_environment:
+                var = var_dict["name"]
                 if var in os.environ:
                     logger.debug(f"Creating {var} variable from environment.")
                     value = os.environ[var]

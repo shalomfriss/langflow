@@ -28,7 +28,9 @@ class DatabaseVariableService(VariableService, Service):
         should_or_should_not = "Should" if self.settings_service.settings.store_environment_variables else "Should not"
         logger.info(f"{should_or_should_not} store environment variables in the database.")
         if self.settings_service.settings.store_environment_variables:
-            for var in self.settings_service.settings.variables_to_get_from_environment:
+            for var_dict in self.settings_service.settings.variables_to_get_from_environment:
+                var = var_dict["name"]
+                default_fields = var_dict["default_fields"]
                 if var in os.environ:
                     logger.debug(f"Creating {var} variable from environment.")
                     if not session.exec(
@@ -42,7 +44,7 @@ class DatabaseVariableService(VariableService, Service):
                                 user_id=user_id,
                                 name=var,
                                 value=value,
-                                default_fields=[],
+                                default_fields=default_fields,
                                 _type=CREDENTIAL_TYPE,
                                 session=session,
                             )

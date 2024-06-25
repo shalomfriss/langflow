@@ -1,4 +1,4 @@
-from typing import TypedDict
+from typing_extensions import TypedDict
 
 DEFAULT_SUPERUSER = "langflow"
 DEFAULT_SUPERUSER_PASSWORD = "langflow"

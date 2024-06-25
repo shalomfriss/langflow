@@ -29,20 +29,20 @@ class AzureOpenAIEmbeddingsComponent(LCModelComponent):
             info="Your Azure endpoint, including the resource. Example: `https://example-resource.azure.openai.com/`",
         ),
         MessageTextInput(
-            name="azure_deployment",
-            display_name="Deployment Name",
+            name="azure_api_embeddings_deployment_name",
+            display_name="Embeddings Deployment Name",
             required=True,
         ),
         DropdownInput(
-            name="api_version",
+            name="azure_api_version",
             display_name="API Version",
             options=API_VERSION_OPTIONS,
             value=API_VERSION_OPTIONS[-1],
             advanced=True,
         ),
         SecretStrInput(
-            name="api_key",
-            display_name="API Key",
+            name="azure_api_key",
+            display_name="Azure API Key",
             required=True,
         ),
         IntInput(
@@ -61,13 +61,13 @@ class AzureOpenAIEmbeddingsComponent(LCModelComponent):
         if not self.api_key:
             raise ValueError("API Key is required")
 
-        azure_api_key = SecretStr(self.api_key)
+        azure_api_key = SecretStr(self.azure_api_key)
 
         try:
             embeddings = AzureOpenAIEmbeddings(
                 azure_endpoint=self.azure_endpoint,
-                azure_deployment=self.azure_deployment,
-                api_version=self.api_version,
+                azure_deployment=self.azure_api_embeddings_deployment_name,
+                api_version=self.azure_api_version,
                 api_key=azure_api_key,
                 dimensions=self.dimensions,
             )

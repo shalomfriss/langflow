@@ -20,7 +20,7 @@ class HuggingFaceEndpointsComponent(LCModelComponent):
             display_name="Task",
             options=["text2text-generation", "text-generation", "summarization"],
         ),
-        SecretStrInput(name="huggingfacehub_api_token", display_name="API token", password=True),
+        SecretStrInput(name="huggingfacehub_api_token", display_name="HuggingFace Hub API token", password=True),
         DictInput(name="model_kwargs", display_name="Model Keyword Arguments", advanced=True),
         BoolInput(name="stream", display_name="Stream", info=STREAM_INFO_TEXT, advanced=True),
         StrInput(

@@ -27,12 +27,12 @@ class AstraVectorStoreComponent(LCVectorStoreComponent):
             info="The name of the collection within Astra DB where the vectors will be stored.",
         ),
         SecretStrInput(
-            name="token",
+            name="astra_db_application_token",
             display_name="Astra DB Application Token",
             info="Authentication token for accessing Astra DB.",
         ),
         SecretStrInput(
-            name="api_endpoint",
+            name="astra_db_api_endpoint",
             display_name="API Endpoint",
             info="API endpoint URL for the Astra DB service.",
         ),
@@ -170,8 +170,8 @@ class AstraVectorStoreComponent(LCVectorStoreComponent):
         vector_store_kwargs = {
             **embedding_dict,
             "collection_name": self.collection_name,
-            "token": self.token,
-            "api_endpoint": self.api_endpoint,
+            "token": self.astra_db_application_token,
+            "api_endpoint": self.astra_db_api_endpoint,
             "namespace": self.namespace or None,
             "metric": self.metric or None,
             "batch_size": self.batch_size or None,

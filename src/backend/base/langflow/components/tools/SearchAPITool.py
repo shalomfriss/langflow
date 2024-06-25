@@ -15,8 +15,8 @@ class SearchApiToolComponent(CustomComponent):
             "field_type": "str",
             "info": "The search engine to use.",
         },
-        "api_key": {
-            "display_name": "API Key",
+        "searchapi_api_key": {
+            "display_name": "SearchApi API Key",
             "field_type": "str",
             "required": True,
             "password": True,
@@ -27,9 +27,9 @@ class SearchApiToolComponent(CustomComponent):
     def build(
         self,
         engine: str,
-        api_key: str,
+        searchapi_api_key: str,
     ) -> Tool:
-        search_api_wrapper = SearchApiAPIWrapper(engine=engine, searchapi_api_key=api_key)
+        search_api_wrapper = SearchApiAPIWrapper(engine=engine, searchapi_api_key=searchapi_api_key)
 
         tool = SearchAPIRun(api_wrapper=search_api_wrapper)
 

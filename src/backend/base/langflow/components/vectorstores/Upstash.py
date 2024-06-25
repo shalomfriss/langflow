@@ -15,9 +15,17 @@ class UpstashVectorStoreComponent(LCVectorStoreComponent):
     icon = "Upstash"
 
     inputs = [
-        StrInput(name="index_url", display_name="Index URL", info="The URL of the Upstash index.", required=True),
+        StrInput(
+            name="upstash_vector_rest_url",
+            display_name="Index URL",
+            info="The URL of the Upstash index.",
+            required=True,
+        ),
         SecretStrInput(
-            name="index_token", display_name="Index Token", info="The token for the Upstash index.", required=True
+            name="upstash_vector_rest_token",
+            display_name="Index Token",
+            info="The token for the Upstash index.",
+            required=True,
         ),
         StrInput(
             name="text_key",
@@ -65,8 +73,8 @@ class UpstashVectorStoreComponent(LCVectorStoreComponent):
                 upstash_vs = UpstashVectorStore(
                     embedding=use_upstash_embedding,
                     text_key=self.text_key,
-                    index_url=self.index_url,
-                    index_token=self.index_token,
+                    index_url=self.upstash_vector_rest_url,
+                    index_token=self.upstash_vector_rest_token,
                 )
                 upstash_vs.add_documents(documents)
             else:
@@ -74,15 +82,15 @@ class UpstashVectorStoreComponent(LCVectorStoreComponent):
                     documents=documents,
                     embedding=self.embedding,
                     text_key=self.text_key,
-                    index_url=self.index_url,
-                    index_token=self.index_token,
+                    index_url=self.upstash_vector_rest_url,
+                    index_token=self.upstash_vector_rest_token,
                 )
         else:
             upstash_vs = UpstashVectorStore(
                 embedding=self.embedding or use_upstash_embedding,
                 text_key=self.text_key,
-                index_url=self.index_url,
-                index_token=self.index_token,
+                index_url=self.upstash_vector_rest_url,
+                index_token=self.upstash_vector_rest_token,
             )
 
         return upstash_vs

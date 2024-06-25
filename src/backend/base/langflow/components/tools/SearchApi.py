@@ -23,8 +23,8 @@ class SearchApi(CustomComponent):
             "info": "The parameters to send with the request.",
         },
         "code": {"show": False},
-        "api_key": {
-            "display_name": "API Key",
+        "searchapi_api_key": {
+            "display_name": "SearchApi API Key",
             "field_type": "str",
             "required": True,
             "password": True,
@@ -35,13 +35,13 @@ class SearchApi(CustomComponent):
     def build(
         self,
         engine: str,
-        api_key: str,
+        searchapi_api_key: str,
         params: Optional[dict] = None,
     ) -> Data:
         if params is None:
             params = {}
 
-        search_api_wrapper = SearchApiAPIWrapper(engine=engine, searchapi_api_key=api_key)
+        search_api_wrapper = SearchApiAPIWrapper(engine=engine, searchapi_api_key=searchapi_api_key)
 
         q = params.pop("q", "SearchApi Langflow")
         results = search_api_wrapper.results(q, **params)
